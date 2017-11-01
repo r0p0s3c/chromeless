@@ -118,10 +118,20 @@ export default class LocalRuntime {
   }
 
   private async goto(url: string): Promise<void> {
-    const { Network, Page } = this.client
+    const { Network, Page, Security } = this.client
     await Promise.all([Network.enable(), Page.enable()])
     if (!this.userAgentValue) this.userAgentValue = `Chromeless ${version}`
     await Network.setUserAgentOverride({ userAgent: this.userAgentValue })
+    if (this.chromelessOptions.ignoreCertErrors){
+	Security.certificateError(({eventId}) => {
+		Security.handleCertificateError({
+			eventId,
+			action: 'continue'
+		});
+	});
+	await Security.enable();
+        await Security.setOverrideCertificateErrors({override: true});
+    }
     await Page.navigate({ url })
     await Page.loadEventFired()
     this.log(`Navigated to ${url}`)

@@ -1,5 +1,6 @@
 export interface Client {
   Network: any
+  Security: any
   Page: any
   DOM: any
   Input: any
@@ -50,6 +51,7 @@ export interface ChromelessOptions {
   launchChrome?: boolean // auto-launch chrome (local) `true`
   cdp?: CDPOptions
   remote?: RemoteOptions | boolean
+  ignoreCertErrors?: boolean // false
 }
 
 export interface Chrome {
