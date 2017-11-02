@@ -13,6 +13,7 @@ Chromeless provides TypeScript typings.
 - `scrollBeforeClick: boolean` Scroll to element before clicking, usefull if element is outside of viewport — Default: `false`
 - `viewport: any` Viewport dimensions — Default: `{width: 1440, height: 900, scale: 1}`
 - `launchChrome: boolean` Auto-launch chrome (local) — Default: `true`
+- `ignoreCertErrors: boolean` Ignore TLS certificate errors — Default: `false`
 - `cdp: CDPOptions` Chome Debugging Protocol Options — Default: `{host: 'localhost', port: 9222, secure: false, closeTab: true}`
 
 **Chromeless methods**
